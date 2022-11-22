@@ -13,7 +13,7 @@ Our goal is to run multiple logical environments (acc, preprod, prod) in the sam
 
 ## Compatibility
 
-Compatible with MLFlow 2.17.0 and higher as there was some reshuffling of the MLFlow entities, such as ModelVersion.
+Compatible with MLFlow 1.17.0 and higher as there was some reshuffling of the MLFlow entities, such as ModelVersion.
 
 ## Unit tests
 
