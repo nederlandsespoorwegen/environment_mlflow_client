@@ -44,7 +44,10 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
         return f"{name}_{self.env_name}"
 
     def get_latest_versions(self, name: str) -> List[ModelVersion]:
-        """Get latest model version"""
+        """
+        Get latest model version.
+        The stage parameter is not supported as we set its value.
+        """
         name = self.get_env_model_name(name)
         return super().get_latest_versions(
             name, stages=[self.stage_lookup[self.env_name]]
@@ -53,7 +56,10 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
     def set_model_version_tag(
         self, name: str, version: str, key: str, value: Any
     ) -> None:
-        """Set a tag on a model version"""
+        """
+        Set a tag on a model version
+        The stage parameter is not supported as we set its value.
+        """
         name = self.get_env_model_name(name)
         super().set_model_version_tag(name, version, key, value)
 
@@ -97,7 +103,12 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
         return super().get_registered_model(name)
 
     def transition_model_version_stage(self, name: str, version: str) -> ModelVersion:
-        """Set the stage of a registered model. More than one model can be in one stage."""
+        """
+        Set the stage of a registered model.
+        More than one model can be in one stage.
+        We do not support the stage and archive_existing_versions paramters,
+        as we set to those.
+        """
         name = self.get_env_model_name(name)
         return super().transition_model_version_stage(
             name=name,
@@ -137,7 +148,8 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
         self, model_flavor: Any, registered_model_name: str, **kwargs
     ) -> Tuple[ModelVersion, ModelInfo]:
         """
-        Standardize model logging setting an environment aware name and stage attribute.
+        Standardize model logging setting an environment aware name
+        and stage attribute.
         All parameters are passed to the log_model of the model_flavor.
 
         Args:

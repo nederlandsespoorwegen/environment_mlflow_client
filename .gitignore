@@ -1,5 +1,7 @@
-# dev
+# Dev
 .idea/
+.coverage/
+.coverage*
 
 # Cache
 __pycache__/
