@@ -1,7 +1,7 @@
 import mlflow
 import pytest
 
-from env_mlflow_client import EnvMlflowClient
+from environment_mlflow_client import EnvMlflowClient
 
 TEST_MODEL_NAME = "test_model_name"
 ENV_NAME = "local"
