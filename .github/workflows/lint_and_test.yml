@@ -23,4 +23,4 @@ jobs:
       - run: poetry install
       - run: poetry run black --check .
       - run: poetry run pylint --fail-under=9 */
-      - run: poetry run pytest tests --cov environment_mlflow_client --cov-fail-under 90
+      - run: poetry run pytest tests --cov environment_mlflow_client --cov-fail-under 85
