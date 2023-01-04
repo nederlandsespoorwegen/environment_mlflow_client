@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "environment-mlflow-client"
+version = "1.0.0"
+description = "environment scoped mlflow client"
+authors = ["Team Sigma <team.sigma@ns.nl>"]
+license = "LICENSE.txt"
+readme = "README.md"
+packages = [{include = "environment_mlflow_client"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+mlflow = "^1.27.0"
+
+[tool.poetry.group.dev.dependencies]
+psutil = "^5.9.4"
+pytest = "^7.2.0"
+black = "^22.12.0"
+pylint = "^2.15.9"
+coverage = "*"
+pytest-cov = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

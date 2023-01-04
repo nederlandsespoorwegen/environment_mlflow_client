@@ -1,0 +1,27 @@
+{
+    "name": "python3.9",
+    "image": "python:3.9-buster",
+    // This line allows you to use Docker runconfigs if you set "sharedVolumes": false
+    "mounts": [],
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.blackPath": "/usr/local/bin/black"
+    },
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+    ],
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "pip install poetry==1.3.1 && poetry config virtualenvs.create false",
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+    // "remoteUser": "vscode"
+    "remoteEnv": {
+        "PYTHONPATH": "${localEnv:PYTHONPATH}:/workspaces/environment_mlflow_client"
+    }
+}

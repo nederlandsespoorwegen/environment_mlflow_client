@@ -1,0 +1,10 @@
+# Dev
+.idea/
+.coverage/
+.coverage*
+
+# Cache
+__pycache__/
+
+# Build
+dist/
