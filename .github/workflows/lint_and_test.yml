@@ -1,0 +1,27 @@
+name: Linting and code coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - uses: Gr1N/setup-poetry@v8
+        with:
+          poetry-version: "1.2.2" 
+      - run: poetry install
+      - run: black --check .
+      - run: pylint --fail-under=8.5 */
+      - run: coverage run --source='.' pytest tests
+      - run: coverage report
