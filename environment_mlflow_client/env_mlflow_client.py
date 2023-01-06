@@ -17,6 +17,8 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
 
     """
 
+    ENVIRONMENT_KEY = "MLFLOW_ENV"
+
     def __init__(
         self,
         env_name: Optional[str] = None,
@@ -26,14 +28,14 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
         """
         For databricks we do not provide these arguments but rely on environment variables.
         Args:
-            env_name: NSK_ENV name
+            env_name: environment name
             tracking_uri: Address of local or remote tracking server.
             registry_uri: Address of local or remote model registry server.
         """
         super().__init__(tracking_uri, registry_uri)
-        if env_name is None and not "NSK_ENV" in os.environ:
-            raise ValueError("pass env_name or set NSK_ENV environment variable.")
-        self.env_name = env_name if env_name else os.environ["NSK_ENV"]
+        if env_name is None and not self.ENVIRONMENT_KEY in os.environ:
+            raise ValueError(f"pass env_name or set {self.ENVIRONMENT_KEY} in env.")
+        self.env_name = env_name if env_name else os.environ[self.ENVIRONMENT_KEY]
         self.stage_lookup = defaultdict(
             lambda: "Staging"
         )  # staging for all envs except production
