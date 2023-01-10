@@ -6,6 +6,7 @@ authors = ["Team Sigma <team.sigma@ns.nl>"]
 license = "LICENSE.txt"
 readme = "README.md"
 packages = [{include = "environment_mlflow_client"}]
+homepage = "https://github.com/nederlandsespoorwegen/environment_mlflow_client"
 
 [tool.poetry.dependencies]
 python = "^3.9"
