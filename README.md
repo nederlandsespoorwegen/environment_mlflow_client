@@ -13,7 +13,7 @@ Our goal is to run multiple logical environments (acc, preprod, prod) in the sam
 
 ## Compatibility
 
-Compatible with MLFlow 1.17.0 and higher as there was some reshuffling of the MLFlow entities, such as ModelVersion.
+Compatible with MLFlow 1.27.0 and higher as there was some reshuffling of the MLFlow entities, such as ModelVersion.
 
 ## Unit tests
 
@@ -23,3 +23,4 @@ The unit tests are thus conducted against the MLFlow API to validate our client.
 ## Pipeline
 
 Github actions are triggered on pull requests to validate the code change against the unit tests.
+When a commit is tagged on main a Python wheel is build and published to pypi and github releases.
