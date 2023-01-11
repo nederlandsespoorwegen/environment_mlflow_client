@@ -11,6 +11,24 @@ Our goal is to run multiple logical environments (acc, preprod, prod) in the sam
 1. abstraction for environment scoped experiment folders
 1. methods for common usage patterns (f.i. load latest model version of any model flavor)
 
+## Usage
+
+```
+>>pip install environment-mlflow-client
+```
+
+Python:
+
+```
+from environment_mlflow_client import EnvMlflowClient
+
+model_name = "deepar"
+
+mlflow_client = EnvMlflowClient(env_name="test")
+
+model_versions = mlflow_client.get_latest_versions(name=model_name)
+```
+
 ## Compatibility
 
 Compatible with MLFlow 1.27.0 and higher as there was some reshuffling of the MLFlow entities, such as ModelVersion.
