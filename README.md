@@ -13,6 +13,10 @@ Our goal is to run multiple logical environments (acc, preprod, prod) in the sam
 
 ## Usage
 
+pypi repository:
+
+[https://pypi.org/project/environment-mlflow-client/](https://pypi.org/project/environment-mlflow-client/)
+
 ```
 >>pip install environment-mlflow-client
 ```
