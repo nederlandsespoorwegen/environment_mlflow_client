@@ -55,6 +55,17 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
             name, stages=[self.stage_lookup[self.env_name]]
         )
 
+    def get_latest_model_version(self, name: str) -> ModelVersion:
+        """
+        Retrieve the latest model version
+
+        Args:
+            name: Name of the model
+        Returns:
+            Latest ModelVersion
+        """
+        return self.get_latest_versions(name)[0]
+
     def set_model_version_tag(
         self, name: str, version: str, key: str, value: Any
     ) -> None:

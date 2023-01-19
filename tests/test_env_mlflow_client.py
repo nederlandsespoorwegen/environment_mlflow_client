@@ -47,8 +47,15 @@ def test_load_model_version():
     assert hasattr(model, "predict")
 
 
+def test_get_latest_model_version():
+    """test get the latest model version"""
+    client = EnvMlflowClient(env_name=ENV_NAME)
+    model_version = client.get_latest_model_version(TEST_MODEL_NAME)
+    assert str(model_version.version) == "1"
+
+
 def test_get_latest_versions():
-    """tes get the latest model versions"""
+    """test get the latest model versions"""
     client = EnvMlflowClient(env_name=ENV_NAME)
     versions = client.get_latest_versions(TEST_MODEL_NAME)
     assert str(versions[0].version) == "1"
