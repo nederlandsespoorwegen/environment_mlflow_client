@@ -3,7 +3,7 @@ import pytest
 
 from environment_mlflow_client import EnvMlflowClient
 
-TEST_MODEL_NAME = "test_model_name"
+TEST_MODEL_NAME = "test_custom_model_with_artifacts"
 ENV_NAME = "local"
 
 
