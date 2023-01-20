@@ -135,15 +135,22 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
         name = self.get_env_model_name(name)
         return super().get_model_version(name=name, version=version)
 
-    def load_model_version(self, model_flavor, name: str, version: str) -> Any:
+    def load_model_version(
+        self, model_flavor, name: str, version: str, unwrap_model: bool = False
+    ) -> Any:
         """Load a model version within the specified stage"""
         model_version = self.get_model_version(
             name=name,
             version=version,
         )
-        return model_flavor.load_model(model_uri=model_version.source)
+        model = model_flavor.load_model(model_uri=model_version.source)
+        if unwrap_model:
+            model = model._model_impl  # retrieve custom model implementation
+        return model
 
-    def load_latest_model(self, model_flavor, name: str) -> Any:
+    def load_latest_model(
+        self, model_flavor, name: str, unwrap_model: bool = False
+    ) -> Any:
         """
         Load the latest version of the pyfunc model with the given name.
 
@@ -155,7 +162,10 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
             The loaded model
         """
         latest_versions = self.get_latest_versions(name)
-        return model_flavor.load_model(latest_versions[0].source)
+        model = model_flavor.load_model(latest_versions[0].source)
+        if unwrap_model:
+            model = model._model_impl  # retrieve custom model implementation
+        return model
 
     def log_model_helper(
         self, model_flavor: Any, registered_model_name: str, **kwargs

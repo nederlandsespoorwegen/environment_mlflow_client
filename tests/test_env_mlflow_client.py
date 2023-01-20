@@ -8,12 +8,15 @@ ENV_NAME = "local"
 
 
 class FakeModel(mlflow.pyfunc.PythonModel):
+    """Fake model to log"""
+
     def predict(self, context, model_input):
         return None
 
 
 @pytest.fixture(autouse=True, scope="module")
-def log_model(run_mlflow):
+def log_model():
+    """log a pyfunc model directly"""
     model_flavor = mlflow.pyfunc
     client = EnvMlflowClient(env_name=ENV_NAME)
 
