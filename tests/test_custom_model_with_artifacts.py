@@ -54,10 +54,19 @@ def log_model_with_artifacts(run_mlflow):
     assert model_version.current_stage == "Staging"
 
 
-def test_registered_model_has_artifacts():
-    """test loading of PyFuncModel with artifacts with custom lookup table"""
+def test_custom_model_with_artifacts():
+    """test loading of underlying model with artifacts with custom lookup table"""
     client = EnvMlflowClient(env_name="local")
     model = client.load_latest_model(
         model_flavor=mlflow.pyfunc, name=TEST_MODEL_NAME, unwrap_model=True
     )
     assert model.lookup_table == LOOKUP_TABLE
+    assert hasattr(model, "predict")
+
+
+def test_wrapped_model_with_artifacts():
+    """test loading of PyFuncModel with artifacts"""
+    client = EnvMlflowClient(env_name="local")
+    model = client.load_latest_model(model_flavor=mlflow.pyfunc, name=TEST_MODEL_NAME)
+    assert hasattr(model, "lookup_table") is False
+    assert hasattr(model, "predict")
