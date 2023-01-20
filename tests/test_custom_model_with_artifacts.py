@@ -14,12 +14,15 @@ LOOKUP_TABLE = {"column_1": [1, 2, 3]}
 
 
 class FakeModel(mlflow.pyfunc.PythonModel):
+    """Fake model to log"""
+
     def predict(self, context, model_input):
         return None
 
 
 @pytest.fixture(autouse=True, scope="module")
-def log_model_with_artifacts(run_mlflow):
+def log_model_with_artifacts():
+    """Log a custom pyfunc model and its artifacts"""
     model_flavor = mlflow.pyfunc
     client = EnvMlflowClient(env_name=ENV_NAME)
 
@@ -30,7 +33,7 @@ def log_model_with_artifacts(run_mlflow):
         with tempfile.TemporaryDirectory() as model_dir:
             table_path = Path(model_dir) / "table.json"
 
-            with open(table_path, "w") as table_file:
+            with open(table_path, mode="w", encoding="utf-8") as table_file:
                 table = LOOKUP_TABLE
                 json.dump(table, table_file)
 

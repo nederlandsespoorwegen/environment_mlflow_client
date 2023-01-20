@@ -12,7 +12,7 @@ def _load_pyfunc(path: str):
     """
     table_path = Path(path) / "table.json"
 
-    with open(table_path, "r") as table_file:
+    with open(table_path, mode="r", encoding="utf-8") as table_file:
         lookup_table = json.load(table_file)
 
     model_path = Path(path) / "model.p"
