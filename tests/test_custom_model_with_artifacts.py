@@ -1,5 +1,6 @@
 import json
 import pickle
+import sys
 import tempfile
 from pathlib import Path
 
@@ -7,6 +8,8 @@ import mlflow
 import pytest
 
 from environment_mlflow_client import EnvMlflowClient
+
+sys.path.append("./tests/model")  # in order find model_loader module
 
 TEST_MODEL_NAME = "test_custom_model_with_artifacts"
 ENV_NAME = "local"
@@ -29,7 +32,6 @@ def log_model_with_artifacts():
     experiment_id = client.create_experiment_if_not_exists("unittest")
 
     with mlflow.start_run(run_name="unittest_training", experiment_id=experiment_id):
-
         with tempfile.TemporaryDirectory() as model_dir:
             table_path = Path(model_dir) / "table.json"
 
