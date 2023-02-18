@@ -35,7 +35,7 @@ model_versions = mlflow_client.get_latest_versions(name=model_name)
 
 ## Compatibility
 
-Compatible with MLFlow 1.27.0 and higher as there was some reshuffling of the MLFlow entities, such as ModelVersion.
+Compatible with MLFlow 2.x.
 
 ## Unit tests
 
