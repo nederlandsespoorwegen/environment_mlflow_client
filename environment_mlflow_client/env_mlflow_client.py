@@ -28,7 +28,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
         registry_uri: Optional[str] = None,
     ):
         """
-        Create an EnvMlflowClient instance scoped for one logical environment. 
+        Create an EnvMlflowClient instance scoped for one logical environment.
         The environment is set by the environment variable MLFLOW_ENV or by passing the env_name argument.
         note: On Databricks we do not provide the arguments and rely on environment variables.
 
@@ -101,7 +101,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
     def set_registered_model_tag(self, name: str, key: str, value: Any) -> None:
         """
         Set a tag on a registered model.
-        
+
         Args:
             name: Name of the model
             key: Tag key
@@ -148,7 +148,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
     ) -> RegisteredModel:
         """
         Create a new registered model
-        
+
         Args:
             name: Name of the model
             tags: Tags to set on the model
@@ -174,7 +174,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
         """
         Set the stage of a registered model. More than one model can be in one stage.
         note: We do not support the stage and archive_existing_versions parameters.
-        
+
         Args:
             name: Name of the model
             version: Version of the model
@@ -273,7 +273,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
 
     def get_env_experiment_name(self, name: str) -> str:
         """Get environment specific experiment name.
-        
+
         Args:
             name: Name of the experiment
         Returns:
