@@ -19,7 +19,7 @@ LOOKUP_TABLE = {"column_1": [1, 2, 3]}
 class FakeModel(mlflow.pyfunc.PythonModel):
     """Fake model to log"""
 
-    def predict(self, context, model_input):
+    def predict(self, context, model_input):  # pylint: disable=unused-argument
         return None
 
 

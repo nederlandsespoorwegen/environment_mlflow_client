@@ -1,6 +1,7 @@
 """
 session wide MLFlow instance fixture
 """
+
 import os
 import subprocess
 import tempfile
