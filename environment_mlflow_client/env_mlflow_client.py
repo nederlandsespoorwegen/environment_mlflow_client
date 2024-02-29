@@ -30,7 +30,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
     ):
         """
         Create an EnvMlflowClient instance scoped for one logical environment.
-        The environment is set by the environment variable MLFLOW_ENV or by 
+        The environment is set by the environment variable MLFLOW_ENV or by
         passing the env_name argument. note: On Databricks we do not provide the
         arguments and rely on environment variables.
 
