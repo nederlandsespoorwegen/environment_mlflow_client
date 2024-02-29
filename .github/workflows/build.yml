@@ -16,7 +16,7 @@ jobs:
           python-version: 3.9
       - uses: Gr1N/setup-poetry@v8
         with:
-          poetry-version: "1.3.1"
+          poetry-version: "1.7.1"
       - run: poetry install
       - run: poetry build --format wheel
       - uses: ncipollo/release-action@v1
