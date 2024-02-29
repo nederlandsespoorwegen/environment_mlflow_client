@@ -1,4 +1,5 @@
 """mlflow client that is aware of the application environment. The main target is Databricks mlflow within one workspace."""
+
 import os
 from collections import defaultdict
 from typing import Any, Dict, List, Optional, Tuple
@@ -29,8 +30,9 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
     ):
         """
         Create an EnvMlflowClient instance scoped for one logical environment.
-        The environment is set by the environment variable MLFLOW_ENV or by passing the env_name argument.
-        note: On Databricks we do not provide the arguments and rely on environment variables.
+        The environment is set by the environment variable MLFLOW_ENV or by
+        passing the env_name argument. note: On Databricks we do not provide the
+        arguments and rely on environment variables.
 
         Args:
             env_name: environment name overrides the environment variable MLFLOW_ENV
@@ -131,7 +133,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
             tags: Tags to set on the model
             run_link: Link to the run that created the model
             description: Description of the model
-            await_creation_for: Number of seconds to wait for the model version to finish being created.
+            await_creation_for: # seconds to wait for the model version to finish being created.
         Returns:
             mlflow ModelVersion
         """
@@ -253,7 +255,7 @@ class EnvMlflowClient(mlflow.tracking.MlflowClient):
             kwargs: parameters for model_flavor.log_model, see documentation of model_flavor
             i.e. mlflow.sklearn.log_model
         Returns:
-            Tuple of a mlflow.entities.model_registry.ModelVersion object and mlflow.models.model.ModelInfo object.
+            Mlflow ModelVersion and ModelInfo
 
         """
         if "artifact_path" in kwargs:
