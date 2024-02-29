@@ -9,7 +9,7 @@ packages = [{include = "environment_mlflow_client"}]
 homepage = "https://github.com/nederlandsespoorwegen/environment_mlflow_client"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 mlflow = "^2.1.0"
 
 [tool.poetry.group.dev.dependencies]
