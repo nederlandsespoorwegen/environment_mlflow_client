@@ -1,0 +1,38 @@
+name: Linting and code coverage
+
+trigger:
+  branches:
+    include:
+      - main
+
+pr:
+  branches:
+    include:
+      - main
+
+jobs:
+  - job: lint_and_test
+    displayName: Lint & Test
+    pool: 
+      vmImage: ubuntu-latest
+    steps:
+      - checkout: self
+      
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "3.10"
+      
+      - pwsh: pip install poetry=="1.7.1"
+        displayName: 'Install poetry'
+      
+      - pwsh: poetry install
+        displayName: 'Install dependencies'
+      
+      - pwsh: poetry run black --check .
+        displayName: Poetry run black
+      
+      - pwsh: poetry run pylint --fail-under=9 */*
+        displayName: PyLint
+      
+      - pwsh: poetry run pytest tests --cov environment_mlflow_client --cov-fail-under 85
+        displayName: PyTest

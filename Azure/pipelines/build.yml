@@ -1,0 +1,41 @@
+name: Build and release on tag
+
+trigger:
+  branches:
+    include:
+      - main
+
+jobs:
+  - job: Build_distribution
+    displayName: Build distribution
+    pool: 
+      vmImage: ubuntu-latest
+    steps:
+      - checkout: self
+
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "3.10"
+
+      - bash: pip install poetry=="1.7.1"
+        displayName: 'Install poetry'
+
+      - bash: poetry install
+        displayName: 'Install dependencies'
+
+      - bash: poetry build --format wheel
+        displayName: 'Build wheel file'
+
+      - publish: dist/
+        artifact: Release
+
+      - bash: python -m pip install --upgrade twine artifacts-keyring
+        displayName: 'Install Twine'
+
+      - task: TwineAuthenticate@1
+        inputs:
+          pythonUploadServiceConnection: "PyPi DNAKAA"
+      
+      - bash: |
+          python -m twine upload -r "environment-mlflow-client" --skip-existing --verbose --config-file $(PYPIRC_PATH) dist/*.whl
+        displayName: 'Publish to PyPi through Twine'

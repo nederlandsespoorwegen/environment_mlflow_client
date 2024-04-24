@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "environment-mlflow-client"
-version = "3.0.0"
+version = "3.0.2"
 description = "environment scoped mlflow client"
 authors = ["Team Sigma <team.sigma@ns.nl>"]
 license = "LICENSE.txt"
